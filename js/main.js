@@ -12,6 +12,23 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    /* ── Modo día / noche (noche por defecto) ── */
+    var themeToggle = document.getElementById('themeToggle');
+    var rootEl = document.documentElement;
+    function applyThemeLabel() {
+        var isLight = rootEl.getAttribute('data-theme') === 'light';
+        themeToggle.setAttribute('aria-label', isLight ? 'Cambiar a modo noche' : 'Cambiar a modo día');
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', isLight ? '#f4f1ec' : '#0c0a0a');
+    }
+    themeToggle.addEventListener('click', function () {
+        var next = rootEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        rootEl.setAttribute('data-theme', next);
+        try { localStorage.setItem('rdm-theme', next); } catch (e) {}
+        applyThemeLabel();
+    });
+    applyThemeLabel();
+
     /* ── Menú móvil ── */
     var navToggle = document.getElementById('navToggle');
     var nav = document.getElementById('nav');
