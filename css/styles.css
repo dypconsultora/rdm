@@ -614,8 +614,11 @@ body::before {
 }
 .card:hover {
     transform: translateY(-6px);
-    border-color: var(--line-strong);
-    box-shadow: var(--shadow-card);
+    border-color: var(--red-bright);
+    box-shadow:
+        0 0 0 1px rgba(232, 56, 44, .55),
+        0 0 26px rgba(232, 56, 44, .35),
+        0 14px 44px rgba(196, 43, 35, .22);
 }
 .card:hover::after { opacity: 1; }
 .card--featured {
